@@ -1,0 +1,113 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <h1>
+                All Contacts Page <a class="btn btn-success ms-5"
+                    routerLink="add-contact"> <i class="fa-solid fa-user-plus
+                        fa-beat me-2"></i>
+                    Add new </a>
+            </h1>
+            <!-- content -->
+            <p class="mb-5 mt-5" style="text-align: justify;">
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Porro
+                at quod molestiae dolore exercitationem, a accusamus error
+                veritatis tempore maiores earum totam nulla saepe praesentium
+                temporibus ea commodi quas minima. Lorem ipsum dolor, sit amet
+                consectetur adipisicing elit. Est esse debitis ex, laboriosam
+                impedit alias fuga obcaecati? Consectetur suscipit quia iusto
+                sint voluptatibus repellat libero praesentium veniam, vitae
+                magni quos? Lorem ipsum dolor sit amet consectetur adipisicing
+                elit. Vero quos voluptatum fugit quas accusamus. Quod alias
+                optio perspiciatis dignissimos perferendis ipsum laborum soluta
+                quis. Hic quis a provident error. Beatae?
+            </p>
+            <!-- search option -->
+            <div class="row mb-5">
+                <div class="col-lg-4 fw-bold">
+                    Search : Contact
+                </div>
+                <div class="col-lg-6">
+
+                    <!-- input search box -->
+                    <input [(ngModel)]="searchKey" type="text" class="form-control" placeholder="Search Contact Name here">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- loading spinner -->
+<div *ngIf="isLoading && allContacts.length==0" class="text-center mt-4">
+    <div class="spinner-border text-info" style="width: 8rem; height: 8rem;"
+        role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+    <div class="spinner-border text-info ms-5" style="width: 8rem; height: 8rem;"
+        role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+    <div class="spinner-border text-info ms-5" style="width: 8rem; height: 8rem;"
+        role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+
+</div>
+
+<!-- error message box -->
+<div *ngIf="errorMsg" class="alert alert-primary" role="alert">
+   {{errorMsg}}
+  </div>
+  
+<!-- if not contact matched in input field -->
+<div class="noresult" *ngIf="(allContacts | filter : searchKey : 'name').length==0 && !isLoading">
+    <h3>No result found</h3>
+<img src="https://uploads-ssl.webflow.com/5fa27c3574b213fae018d63e/61db77ae62249315c10cf2d3_animation_500_kxszguql.gif" height="400px" alt="No result found">
+    </div>
+<!-- contact card design -->
+<div class="container mt-5">
+    <div *ngIf="!isLoading && allContacts.length>0" class="row">
+        <div class="col-lg-6 mb-3" *ngFor="let contact of allContacts | filter : searchKey : 'name' ">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row align-items-center">
+                        <div class="col-sm-4 text-center">
+                            <!-- image -->
+                            <img class="w-75" [src]="contact.photo"
+                                alt="user-icon">
+                        </div>
+                        <div class="col-sm-7">
+                            <!-- content -->
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    Name : <span class="fw-bold">{{contact.name}}</span>
+                                </li>
+                                <li class="list-group-item">
+                                    Mobile : <span class="fw-bold">{{contact.mobile}}</span>
+                                </li>
+                                <li class="list-group-item">
+                                    Email : <span class="fw-bold">{{contact.email}}</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-1 d-flex flex-column
+                            justify-content-center align-items-center">
+                            <!-- actions -->
+                            <!-- view -->
+                            <a class="btn btn-warning mb-1"
+                                routerLink="view-contact/{{contact.id}}"><i
+                                    class="fa-solid fa-eye"></i>
+                            </a>
+                            <a class="btn btn-success mb-1"
+                                routerLink="edit-contact/{{contact.id}}"><i
+                                    class="fa-solid fa-pen"></i>
+                            </a>
+                            <button (click)="delContact(contact.id)" class="btn btn-danger"><i class="fa-solid
+                                    fa-trash"></i></button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

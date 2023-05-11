@@ -1,0 +1,32 @@
+
+
+        Contact Management App - Workflow
+
+        1. create angular project
+        2. clean code
+        3. run project
+        4. link all external library : bootstrap, font awesome, gfonts
+        5. create components-
+            5.1. - header
+            5.2. - footer
+            5.3. - all-contacts
+            5.4. - add-contact
+            5.5. - view contact
+            5.6. - edit contact
+        6. delete spec.ts files    
+        7. Set up path for each components
+            6.1. - header       
+            6.2. - footer       
+            6.3. - all-contacts : path - http://localhost:4200/
+            6.4. - add-contact  : path - http://localhost:4200/add-contact
+            6.5. - view contact : path - http://localhost:4200/view-contact
+            6.6. - edit contact : path - http://localhost:4200/id
+
+            :/ for letting the server know that the things coming after colon is a url parameter
+
+        8. To navigate according to component use router-outlet in app.component.html 
+            -   use semantic tags to place the components (Semantic means header in header tag and footer in footer tag)
+            remember : structural directive. ...member?
+        9. Design components
+        10.Create services to share common logic (api call) b/w components : ng g s service-folder/service-name
+        11. Dependency Inject 'HttpClient' class in service class constructor        
